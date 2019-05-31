@@ -1,5 +1,5 @@
 --------------------------------------------------------
--- Archivo creado  - viernes-mayo-24-2019   
+-- Archivo creado  - viernes-mayo-31-2019   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table ALUMNOS
@@ -10,7 +10,7 @@
 	"NOMBRE" VARCHAR2(100 BYTE), 
 	"TELEFONO" VARCHAR2(20 BYTE), 
 	"EMAIL" VARCHAR2(100 BYTE), 
-	"FECHA_NACIMIENTO" DATE
+	"FECHA_NACIMIENTO" VARCHAR2(20 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -38,8 +38,8 @@
 	"ANO" VARCHAR2(4 BYTE), 
 	"ESTADO" CHAR(1 BYTE), 
 	"NUMERO" CHAR(1 BYTE), 
-	"FECHA_INICIO" DATE, 
-	"FECHA_FINALIZACION" DATE
+	"FECHA_INICIO" VARCHAR2(20 BYTE), 
+	"FECHA_FINALIZACION" VARCHAR2(20 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -129,31 +129,35 @@
   TABLESPACE "SGA_DATA" ;
 REM INSERTING into SGA.ALUMNOS
 SET DEFINE OFF;
-Insert into SGA.ALUMNOS (CEDULA,NOMBRE,TELEFONO,EMAIL,FECHA_NACIMIENTO) values ('207680548','David Guzman','24307589','david@gmail.com',to_date('11/06/97','DD/MM/RR'));
-Insert into SGA.ALUMNOS (CEDULA,NOMBRE,TELEFONO,EMAIL,FECHA_NACIMIENTO) values ('201980315','Maria Jesus','62325689','marco@hotmail.com',to_date('11/06/98','DD/MM/RR'));
-Insert into SGA.ALUMNOS (CEDULA,NOMBRE,TELEFONO,EMAIL,FECHA_NACIMIENTO) values ('207680215','Adrian Picado ','898889895','adri@gmail.com',to_date('11/06/00','DD/MM/RR'));
+Insert into SGA.ALUMNOS (CEDULA,NOMBRE,TELEFONO,EMAIL,FECHA_NACIMIENTO) values ('207680548','David Guzman','24307589','david@gmail.com','11/06/97');
+Insert into SGA.ALUMNOS (CEDULA,NOMBRE,TELEFONO,EMAIL,FECHA_NACIMIENTO) values ('201980315','Maria Jesus Rodriguez ','62325689','maria@hotmail.com',null);
+Insert into SGA.ALUMNOS (CEDULA,NOMBRE,TELEFONO,EMAIL,FECHA_NACIMIENTO) values ('209870765','Mario Diaz  Perez ','24308529','dars@gmail.com','11/06/1997');
+Insert into SGA.ALUMNOS (CEDULA,NOMBRE,TELEFONO,EMAIL,FECHA_NACIMIENTO) values ('208660986','Miguel Jimenez','62895389','migue@gmail.com','11/06/1998');
+Insert into SGA.ALUMNOS (CEDULA,NOMBRE,TELEFONO,EMAIL,FECHA_NACIMIENTO) values ('208970217','David Rodriguez  Zamora ','65493295','xxxdarsxxx0@gmail.com','11/06/1997');
 REM INSERTING into SGA.CARRERAS
 SET DEFINE OFF;
 Insert into SGA.CARRERAS (COD_CARRERA,NOMBRE_CARRERA,TITULO) values ('ADM','Administracion de Empresas ','Bachillerato');
-Insert into SGA.CARRERAS (COD_CARRERA,NOMBRE_CARRERA,TITULO) values ('DG','Carrera de Diseno Grafico v','Bachillerato');
+Insert into SGA.CARRERAS (COD_CARRERA,NOMBRE_CARRERA,TITULO) values ('DG','Diseno Grafico ','Bachillerato');
 Insert into SGA.CARRERAS (COD_CARRERA,NOMBRE_CARRERA,TITULO) values ('INF','Ingenieria en Sistemas','Bachillerato');
 Insert into SGA.CARRERAS (COD_CARRERA,NOMBRE_CARRERA,TITULO) values ('ING','Ingles','Bachillerato');
 REM INSERTING into SGA.CICLOS
 SET DEFINE OFF;
-Insert into SGA.CICLOS (COD_CICLO,ANO,ESTADO,NUMERO,FECHA_INICIO,FECHA_FINALIZACION) values ('C1-2019','2019','1','1',to_date('12/02/19','DD/MM/RR'),to_date('13/06/19','DD/MM/RR'));
-Insert into SGA.CICLOS (COD_CICLO,ANO,ESTADO,NUMERO,FECHA_INICIO,FECHA_FINALIZACION) values ('C1-2020','2028','0','1',to_date('01/01/20','DD/MM/RR'),to_date('02/02/20','DD/MM/RR'));
-Insert into SGA.CICLOS (COD_CICLO,ANO,ESTADO,NUMERO,FECHA_INICIO,FECHA_FINALIZACION) values ('C2-2020','2020','0','2',to_date('20/06/20','DD/MM/RR'),to_date('14/11/20','DD/MM/RR'));
-Insert into SGA.CICLOS (COD_CICLO,ANO,ESTADO,NUMERO,FECHA_INICIO,FECHA_FINALIZACION) values ('c10-2020','2020','0','2',to_date('01/01/20','DD/MM/RR'),to_date('01/02/20','DD/MM/RR'));
-Insert into SGA.CICLOS (COD_CICLO,ANO,ESTADO,NUMERO,FECHA_INICIO,FECHA_FINALIZACION) values ('C1-2018','2018','0','1',to_date('17/02/18','DD/MM/RR'),to_date('15/06/18','DD/MM/RR'));
+Insert into SGA.CICLOS (COD_CICLO,ANO,ESTADO,NUMERO,FECHA_INICIO,FECHA_FINALIZACION) values ('C1-2019','2019','1','1','12/02/19','13/06/19');
+Insert into SGA.CICLOS (COD_CICLO,ANO,ESTADO,NUMERO,FECHA_INICIO,FECHA_FINALIZACION) values ('C2-2020','2020','0','2','20/06/20','14/11/20');
+Insert into SGA.CICLOS (COD_CICLO,ANO,ESTADO,NUMERO,FECHA_INICIO,FECHA_FINALIZACION) values ('C1-2018','2018','0','1','17/02/18','15/06/18');
 REM INSERTING into SGA.CURSOS
 SET DEFINE OFF;
 Insert into SGA.CURSOS (CODIGO,CODIGO_CICLO,CODIGO_CARRERA,NOMBRE,CREDITOS,HORAS) values ('EIN-566','C1-2019','ING','INGLES l','4','8');
 Insert into SGA.CURSOS (CODIGO,CODIGO_CICLO,CODIGO_CARRERA,NOMBRE,CREDITOS,HORAS) values ('EIF-412','C1-2019','INF','Desarrollo de Aplicaciones Moviles','4','25');
+Insert into SGA.CURSOS (CODIGO,CODIGO_CICLO,CODIGO_CARRERA,NOMBRE,CREDITOS,HORAS) values ('C1','C1-2019','ADM','Nom','8','7');
+Insert into SGA.CURSOS (CODIGO,CODIGO_CICLO,CODIGO_CARRERA,NOMBRE,CREDITOS,HORAS) values ('EVS','C1-2019','INF','Estilos De Vida Saludable','3','4');
 REM INSERTING into SGA.GRUPOS
 SET DEFINE OFF;
 Insert into SGA.GRUPOS (COD_GRUPO,CODIGO_CURSO,CEDULA_PROFESOR,HORARIO) values ('PR','EIN-566','207680219','PR');
-Insert into SGA.GRUPOS (COD_GRUPO,CODIGO_CURSO,CEDULA_PROFESOR,HORARIO) values ('G-60','EIN-566','201890656','manana');
 Insert into SGA.GRUPOS (COD_GRUPO,CODIGO_CURSO,CEDULA_PROFESOR,HORARIO) values ('G-29','EIN-566','207680219','Tardes');
+Insert into SGA.GRUPOS (COD_GRUPO,CODIGO_CURSO,CEDULA_PROFESOR,HORARIO) values ('F','EIN-566','201890656','R');
+Insert into SGA.GRUPOS (COD_GRUPO,CODIGO_CURSO,CEDULA_PROFESOR,HORARIO) values ('Kk','EIN-566','201890656','77');
+Insert into SGA.GRUPOS (COD_GRUPO,CODIGO_CURSO,CEDULA_PROFESOR,HORARIO) values ('G-21','EIN-566','201890656','Yarde');
 REM INSERTING into SGA.MATRICULAS
 SET DEFINE OFF;
 REM INSERTING into SGA.PROFESORES
@@ -249,6 +253,7 @@ begin
     delete from ALUMNOS where cedula=cedulain;
 end;
 
+
 /
 --------------------------------------------------------
 --  DDL for Procedure ELIMINARCARRERA
@@ -260,6 +265,7 @@ AS
 BEGIN
     DELETE FROM CARRERAS WHERE COD_CARRERA=codigoin;
 END;
+
 
 /
 --------------------------------------------------------
@@ -273,6 +279,7 @@ BEGIN
     DELETE FROM CICLOS WHERE COD_CICLO=codigoin;
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Procedure ELIMINARCURSO
@@ -284,6 +291,7 @@ AS
 BEGIN
     DELETE FROM CURSOS WHERE CODIGO=codigoin;
 END;
+
 
 /
 --------------------------------------------------------
@@ -297,6 +305,7 @@ BEGIN
     DELETE FROM Grupos WHERE COD_GRUPO=codigoin;
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Procedure ELIMINARPROFESOR
@@ -308,6 +317,7 @@ AS
 BEGIN
     DELETE FROM PROFESORES WHERE cedula=cedulain;
 END;
+
 
 /
 --------------------------------------------------------
@@ -322,6 +332,7 @@ BEGIN
 	INSERT INTO ALUMNOS VALUES(cedula,nombre,telefono,email,fecha_nacimiento);
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Procedure INSERTARALUMNOS
@@ -335,6 +346,7 @@ BEGIN
 	INSERT INTO ALUMNOS VALUES(cedula,nombre,telefono,email,fecha_nacimiento);
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Procedure INSERTARCARRERA
@@ -346,6 +358,7 @@ AS
 BEGIN
     INSERT INTO CARRERAS VALUES(CODIGO, NOMBRE, TITULO);
 END;
+
 
 /
 --------------------------------------------------------
@@ -360,6 +373,7 @@ BEGIN
 	INSERT INTO CICLOS VALUES(codigo,ano,estado,numero,fecha_inicio, fecha_finalizacion);
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Procedure INSERTARCURSO
@@ -373,6 +387,7 @@ BEGIN
 	INSERT INTO CURSOS VALUES(codigo,codigo_ciclo,codigo_carrera,nombre,creditos,horas);
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Procedure INSERTARCURSOS
@@ -385,6 +400,7 @@ AS
 BEGIN
 	INSERT INTO CURSOS VALUES(codigo,codigo_ciclo,codigo_carrera,nombre,creditos,horas);
 END;
+
 
 /
 --------------------------------------------------------
@@ -401,6 +417,7 @@ BEGIN
 	INSERT INTO GRUPOS(COD_GRUPO,CODIGO_CURSO,CEDULA_PROFESOR,HORARIO) VALUES(vCOD_GRUPO, vCODIGO_CURSO, vCEDULA_PROFESOR, vHORARIO);
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Procedure INSERTARPROFESOR
@@ -413,6 +430,7 @@ AS
 BEGIN
 	INSERT INTO PROFESORES VALUES(cedula,nombre,telefono,email);
 END;
+
 
 /
 --------------------------------------------------------
@@ -427,6 +445,7 @@ BEGIN
 UPDATE ALUMNOS SET nombre=nombrein,telefono=telefonoin,email=emailin,fecha_nacimiento=fecha_nacimientoin WHERE cedula=cedulain;
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Procedure MODIFICARCARRERA
@@ -439,6 +458,7 @@ AS
 BEGIN
     UPDATE CARRERAS SET NOMBRE_CARRERA=NOMBREIN, TITULO=TITULOIN WHERE COD_CARRERA=CODIGOIN;
 END;
+
 
 /
 --------------------------------------------------------
@@ -453,6 +473,7 @@ BEGIN
 UPDATE CICLOS SET ano=anoin,estado=estadoin,numero=numeroin,fecha_inicio=fecha_inicioin, fecha_finalizacion=fecha_finalizacionin WHERE COD_CICLO=codigoin;
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Procedure MODIFICARCURSO
@@ -466,6 +487,7 @@ BEGIN
     UPDATE CURSOS SET codigo_ciclo=codigo_cicloin,codigo_carrera=codigo_carrerain,nombre=nombrein, creditos=creditosin, horas=horasin WHERE codigo=codigoin;
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Procedure MODIFICARCURSOU
@@ -478,6 +500,7 @@ AS
 BEGIN
 UPDATE CURSOS SET codigo_ciclo=codigo_cicloin,codigo_carrera=codigo_carrerain,nombre=nombrein, creditos=creditosin, horas=horasin WHERE codigo=codigoin;
 END;
+
 
 /
 --------------------------------------------------------
@@ -494,6 +517,7 @@ BEGIN
 UPDATE GRUPOS SET CODIGO_CURSO=CODIGO_CURSOIN, CEDULA_PROFESOR=CEDULA_PROFESORIN, HORARIO=HORARIOIN WHERE COD_GRUPO=COD_GRUPOIN;
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Procedure MODIFICARPROFESOR
@@ -507,6 +531,7 @@ BEGIN
 UPDATE PROFESORES SET NOMBRE_PROFESOR=nombrein,telefono=telefonoin,email=emailin WHERE cedula=cedulain;
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Package TYPES
@@ -516,6 +541,7 @@ END;
 AS
      TYPE ref_cursor IS REF CURSOR;
 END;
+
 
 /
 --------------------------------------------------------
@@ -532,6 +558,7 @@ BEGIN
 RETURN alumno_cursor; 
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Function BUSCARALUMNOCEDULA
@@ -546,6 +573,7 @@ BEGIN
        SELECT CEDULA,NOMBRE,TELEFONO,EMAIL,FECHA_NACIMIENTO FROM ALUMNOS WHERE cedula LIKE codigoBuscar||'%'; 
 RETURN alumno_cursor; 
 END;
+
 
 /
 --------------------------------------------------------
@@ -562,6 +590,7 @@ BEGIN
 RETURN alumno_cursor; 
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Function BUSCARANOCICLO
@@ -576,6 +605,7 @@ BEGIN
        SELECT COD_CICLO, ANO,ESTADO,NUMERO,FECHA_INICIO,FECHA_FINALIZACION FROM CICLOS WHERE ano LIKE anobuscar||'%'; 
 RETURN ciclo_cursor; 
 END;
+
 
 /
 --------------------------------------------------------
@@ -593,6 +623,7 @@ BEGIN
 RETURN carrera_cursor; 
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Function BUSCARCARRERACODIGO
@@ -608,6 +639,7 @@ SELECT COD_CARRERA FROM CARRERAS WHERE NOMBRE_CARRERA=NombreCarrera;
 RETURN curso_cursor; 
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Function BUSCARCARRERACODIGOPORNOMBRE
@@ -622,6 +654,7 @@ BEGIN
 SELECT COD_CARRERA,NOMBRE_CARRERA,TITULO FROM CARRERAS WHERE NOMBRE_CARRERA=NombreCarrera;
 RETURN curso_cursor; 
 END;
+
 
 /
 --------------------------------------------------------
@@ -642,6 +675,7 @@ BEGIN
 RETURN curso_cursor; 
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Function BUSCARCICLO
@@ -656,6 +690,7 @@ BEGIN
        SELECT COD_CICLO,ANO,ESTADO,NUMERO,FECHA_INICIO,FECHA_FINALIZACION FROM CICLOS WHERE COD_CICLO = codigobuscar; 
 RETURN ciclo_cursor; 
 END;
+
 
 /
 --------------------------------------------------------
@@ -673,6 +708,7 @@ BEGIN
 RETURN carrera_cursor; 
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Function BUSCARCODIGOCARRERAOP
@@ -689,6 +725,7 @@ BEGIN
 RETURN carrera_cursor; 
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Function BUSCARCODIGOCICLO
@@ -703,6 +740,7 @@ BEGIN
        SELECT COD_CICLO,ANO,ESTADO,NUMERO,FECHA_INICIO,FECHA_FINALIZACION FROM CICLOS WHERE COD_CICLO LIKE codigobuscar||'%'; 
 RETURN ciclo_cursor; 
 END;
+
 
 /
 --------------------------------------------------------
@@ -723,6 +761,7 @@ BEGIN
 RETURN curso_cursor; 
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Function BUSCARCURSO
@@ -741,6 +780,7 @@ BEGIN
 RETURN curso_cursor; 
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Function BUSCARGRUPO
@@ -755,6 +795,7 @@ BEGIN
        SELECT COD_GRUPO, CODIGO_CURSO, CEDULA_PROFESOR, HORARIO FROM GRUPOS WHERE COD_GRUPO LIKE IDCOD_GRUPO||'%'; 
 RETURN GRUPO_cursor; 
 END;
+
 
 /
 --------------------------------------------------------
@@ -772,6 +813,7 @@ BEGIN
 RETURN carrera_cursor; 
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Function BUSCARNOMBRECARRERAOP
@@ -787,6 +829,7 @@ BEGIN
        SELECT COD_CARRERA,NOMBRE_CARRERA,TITULO FROM CARRERAS WHERE NOMBRE_CARRERA LIKE NOMBREBUSCAR||'%'; 
 RETURN carrera_cursor; 
 END;
+
 
 /
 --------------------------------------------------------
@@ -807,6 +850,7 @@ BEGIN
 RETURN curso_cursor; 
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Function BUSCARPROFESOR
@@ -821,6 +865,7 @@ BEGIN
       SELECT  CEDULA,NOMBRE_PROFESOR,TELEFONO,EMAIL FROM PROFESORES WHERE CEDULA = cedulabuscar; 
 RETURN profesor_cursor; 
 END;
+
 
 /
 --------------------------------------------------------
@@ -837,6 +882,7 @@ BEGIN
 RETURN profesor_cursor; 
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Function BUSCARPROFESORNOMBRE
@@ -851,6 +897,7 @@ BEGIN
        SELECT  CEDULA,NOMBRE_PROFESOR,TELEFONO,EMAIL  FROM PROFESORES WHERE NOMBRE_PROFESOR LIKE nombreBuscar||'%'; 
 RETURN profesor_cursor; 
 END;
+
 
 /
 --------------------------------------------------------
@@ -868,6 +915,7 @@ BEGIN
 RETURN carrera_cursor; 
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Function LISTARALUMNOS
@@ -882,6 +930,7 @@ BEGIN
        SELECT CEDULA,NOMBRE,TELEFONO,EMAIL,FECHA_NACIMIENTO from ALUMNOS; 
 RETURN alumno_cursor; 
 END;
+
 
 /
 --------------------------------------------------------
@@ -898,6 +947,7 @@ BEGIN
 RETURN carrera_cursor; 
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Function LISTARCICLOS
@@ -912,6 +962,7 @@ BEGIN
        SELECT COD_CICLO,ANO,ESTADO,NUMERO,FECHA_INICIO,FECHA_FINALIZACION FROM CICLOS; 
 RETURN ciclo_cursor; 
 END;
+
 
 /
 --------------------------------------------------------
@@ -932,6 +983,7 @@ BEGIN
 
 RETURN curso_cursor; 
 END;
+
 
 /
 --------------------------------------------------------
@@ -957,6 +1009,7 @@ BEGIN
 RETURN GRUPO_cursor; 
 END;
 
+
 /
 --------------------------------------------------------
 --  DDL for Function LISTARPROFESOR
@@ -973,99 +1026,100 @@ BEGIN
 RETURN profesor_cursor; 
 END;
 
+
 /
 --------------------------------------------------------
 --  Constraints for Table GRUPOS
 --------------------------------------------------------
 
+  ALTER TABLE "SGA"."GRUPOS" MODIFY ("COD_GRUPO" NOT NULL ENABLE);
+  ALTER TABLE "SGA"."GRUPOS" MODIFY ("CODIGO_CURSO" NOT NULL ENABLE);
+  ALTER TABLE "SGA"."GRUPOS" MODIFY ("CEDULA_PROFESOR" NOT NULL ENABLE);
   ALTER TABLE "SGA"."GRUPOS" ADD CONSTRAINT "PK_GRUPOS" PRIMARY KEY ("COD_GRUPO")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SGA_DATA"  ENABLE;
-  ALTER TABLE "SGA"."GRUPOS" MODIFY ("CEDULA_PROFESOR" NOT NULL ENABLE);
-  ALTER TABLE "SGA"."GRUPOS" MODIFY ("CODIGO_CURSO" NOT NULL ENABLE);
-  ALTER TABLE "SGA"."GRUPOS" MODIFY ("COD_GRUPO" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table ROLES
 --------------------------------------------------------
 
+  ALTER TABLE "SGA"."ROLES" MODIFY ("CODIGO" NOT NULL ENABLE);
   ALTER TABLE "SGA"."ROLES" ADD CONSTRAINT "PK_ROLES" PRIMARY KEY ("CODIGO")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SGA_DATA"  ENABLE;
-  ALTER TABLE "SGA"."ROLES" MODIFY ("CODIGO" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table CURSOS
 --------------------------------------------------------
 
+  ALTER TABLE "SGA"."CURSOS" MODIFY ("CODIGO" NOT NULL ENABLE);
+  ALTER TABLE "SGA"."CURSOS" MODIFY ("CODIGO_CICLO" NOT NULL ENABLE);
+  ALTER TABLE "SGA"."CURSOS" MODIFY ("CODIGO_CARRERA" NOT NULL ENABLE);
   ALTER TABLE "SGA"."CURSOS" ADD CONSTRAINT "PK_CURSO" PRIMARY KEY ("CODIGO")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SGA_DATA"  ENABLE;
-  ALTER TABLE "SGA"."CURSOS" MODIFY ("CODIGO_CARRERA" NOT NULL ENABLE);
-  ALTER TABLE "SGA"."CURSOS" MODIFY ("CODIGO_CICLO" NOT NULL ENABLE);
-  ALTER TABLE "SGA"."CURSOS" MODIFY ("CODIGO" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table USUARIOS
 --------------------------------------------------------
 
+  ALTER TABLE "SGA"."USUARIOS" MODIFY ("USUARIO" NOT NULL ENABLE);
+  ALTER TABLE "SGA"."USUARIOS" MODIFY ("CODIGO_ROLES" NOT NULL ENABLE);
   ALTER TABLE "SGA"."USUARIOS" ADD CONSTRAINT "PK_USUARIO" PRIMARY KEY ("USUARIO")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SGA_DATA"  ENABLE;
-  ALTER TABLE "SGA"."USUARIOS" MODIFY ("CODIGO_ROLES" NOT NULL ENABLE);
-  ALTER TABLE "SGA"."USUARIOS" MODIFY ("USUARIO" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table PROFESORES
 --------------------------------------------------------
 
+  ALTER TABLE "SGA"."PROFESORES" MODIFY ("CEDULA" NOT NULL ENABLE);
   ALTER TABLE "SGA"."PROFESORES" ADD CONSTRAINT "PK_PROFESORE" PRIMARY KEY ("CEDULA")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SGA_DATA"  ENABLE;
-  ALTER TABLE "SGA"."PROFESORES" MODIFY ("CEDULA" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table MATRICULAS
 --------------------------------------------------------
 
-  ALTER TABLE "SGA"."MATRICULAS" MODIFY ("CEDULA_ALUMNO" NOT NULL ENABLE);
   ALTER TABLE "SGA"."MATRICULAS" MODIFY ("CODIGO_GRUPO" NOT NULL ENABLE);
+  ALTER TABLE "SGA"."MATRICULAS" MODIFY ("CEDULA_ALUMNO" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table ALUMNOS
 --------------------------------------------------------
 
+  ALTER TABLE "SGA"."ALUMNOS" MODIFY ("CEDULA" NOT NULL ENABLE);
   ALTER TABLE "SGA"."ALUMNOS" ADD CONSTRAINT "PK_ALUMNO" PRIMARY KEY ("CEDULA")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SGA_DATA"  ENABLE;
-  ALTER TABLE "SGA"."ALUMNOS" MODIFY ("CEDULA" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table CARRERAS
 --------------------------------------------------------
 
+  ALTER TABLE "SGA"."CARRERAS" MODIFY ("COD_CARRERA" NOT NULL ENABLE);
   ALTER TABLE "SGA"."CARRERAS" ADD CONSTRAINT "PK_CARRERA" PRIMARY KEY ("COD_CARRERA")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SGA_DATA"  ENABLE;
-  ALTER TABLE "SGA"."CARRERAS" MODIFY ("COD_CARRERA" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table CICLOS
 --------------------------------------------------------
 
+  ALTER TABLE "SGA"."CICLOS" MODIFY ("COD_CICLO" NOT NULL ENABLE);
+  ALTER TABLE "SGA"."CICLOS" MODIFY ("ANO" NOT NULL ENABLE);
   ALTER TABLE "SGA"."CICLOS" ADD CONSTRAINT "PK_CICLO" PRIMARY KEY ("COD_CICLO")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SGA_DATA"  ENABLE;
-  ALTER TABLE "SGA"."CICLOS" MODIFY ("ANO" NOT NULL ENABLE);
-  ALTER TABLE "SGA"."CICLOS" MODIFY ("COD_CICLO" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Ref Constraints for Table CURSOS
 --------------------------------------------------------

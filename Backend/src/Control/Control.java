@@ -5,30 +5,35 @@
  */
 package Control;
 
-import Datos.GlobalException;
-import Datos.NoDataException;
-import Datos.ServicioAgencia;
-import Datos.ServicioCliente;
-import Datos.ServicioVehiculo;
-import Entidades.Agencia;
-import Entidades.Clasificacion;
-import Entidades.Cliente;
-import Entidades.Marca;
-import Entidades.Transmision;
-import Entidades.Vehiculo;
+import AccesoDatos.GlobalException;
+import AccesoDatos.NoDataException;
+import AccesoDatos.ServicioAlumno;
+import AccesoDatos.ServicioGrupo;
+import AccesoDatos.ServicioProfesor;
+import AccesoDatos.ServicioCarrera;
+import AccesoDatos.ServicioCiclo;
+import AccesoDatos.ServicioCursos;
+import Entidades.Alumno;
+import Entidades.Carrera;
+import Entidades.Ciclo;
+import Entidades.Curso;
+import Entidades.Grupo;
+import Entidades.Profesor;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author david
+ * @author David Guzman
  */
 public class Control {
-    private ServicioCliente servicioCliente;
-    private ServicioAgencia servicioAgencia;
-    private ServicioVehiculo servicioVehiculo;
-    
+    private ServicioAlumno servicioAlumno;
+    private ServicioProfesor servicioProfesor;
+    private ServicioGrupo servicioGrupo;
+    private ServicioCarrera servicioCarrera;
+    private ServicioCiclo servicioCiclos;
+    private ServicioCursos servicioCursos;
     private static Control uniqueInstance;
     public static Control instance()
     {
@@ -40,75 +45,211 @@ public class Control {
     }
     public Control()
     {
-        servicioCliente = new ServicioCliente();
-        servicioAgencia = new ServicioAgencia();
-        servicioVehiculo = new ServicioVehiculo();
+        //servicioProfesor = new ServicioProfesor();
+        //servicioAlumno = new ServicioAlumno();
+        //servicioGrupo = new ServicioGrupo();
+        //servicioCiclos = new ServicioCiclo();
+        //servicioCursos = new ServicioCursos();
+        //servicioCarrera = new ServicioCarrera();
+    }
+    ////////////////////////////////////ALUMNOS/////////////////////////////////
+    public void insertarAlumno(Alumno alumno) throws Exception{
+        servicioAlumno = new ServicioAlumno();
+        servicioAlumno.insertarAlumno(alumno);
     }
     
-    //Clientes
-    public void insertarCliente(Cliente cliente) throws Exception{
-        servicioCliente.insertarCliente(cliente);
+    public void modificarAlumno(Alumno alumno) throws Exception{
+        servicioAlumno = new ServicioAlumno();
+        servicioAlumno.editarAlumno(alumno);
     }
     
-   public void eliminarCliente(String cedula) throws Exception{
-        servicioCliente.eliminarCliente(cedula);
+   public void eliminarAlumno(String cedula) throws Exception{
+       servicioAlumno = new ServicioAlumno();
+        servicioAlumno.eliminarAlumno(cedula);
     }
     
-    public ArrayList<Cliente> listarClientes() throws GlobalException, NoDataException{
-        return servicioCliente.listarClientes();
+    public ArrayList buscarAlumno(String cedula) throws GlobalException, NoDataException{
+        servicioAlumno = new ServicioAlumno();
+        return servicioAlumno.buscarAlumno(cedula); 
     }
     
-    public void modificarCliente(Cliente cliente) throws Exception{
-        servicioCliente.editarCliente(cliente);
+    public ArrayList buscarAlumnoNombre(String nombre) throws GlobalException, NoDataException{
+        servicioAlumno = new ServicioAlumno();
+        return servicioAlumno.buscarAlumnoNombre(nombre); 
+    }
+    
+    public ArrayList buscarAlumnoCedula(String cedula) throws GlobalException, NoDataException{
+        servicioAlumno = new ServicioAlumno();
+        return servicioAlumno.buscarAlumnoCedula(cedula); 
+    }
+    
+    public ArrayList listarAlumnos() throws GlobalException, NoDataException{
+        servicioAlumno = new ServicioAlumno();
+       return  servicioAlumno.listarAlumnos();
+    }
+    ////////////////////////////////////PROFESORES/////////////////////////////////
+    public boolean insertarProfesor(Profesor profesor) throws GlobalException, SQLException{
+        servicioProfesor = new ServicioProfesor();
+        return servicioProfesor.insertarProfesor(profesor);
+    }
+    public boolean eliminarProfesor(String cedula) throws GlobalException,SQLException{
+        servicioProfesor = new ServicioProfesor();
+        return servicioProfesor.eliminarProfesor(cedula);
+    }
+    public boolean editarProfesor(Profesor profesor) throws GlobalException,SQLException{
+        servicioProfesor = new ServicioProfesor();
+        return servicioProfesor.editarProfesor(profesor);
+    }
+    public ArrayList listaProfesores() throws GlobalException, NoDataException{
+        servicioProfesor = new ServicioProfesor();
+        return servicioProfesor.listaProfesores();
+    }
+    public Profesor buscarProfesor(String codigo) throws GlobalException, NoDataException{
+        servicioProfesor = new ServicioProfesor();
+        return servicioProfesor.buscarProfesor(codigo); 
+    }
+    public List<Profesor> buscarProfesorCedula(String cedula) throws GlobalException, NoDataException{
+        servicioProfesor = new ServicioProfesor();
+        return (List<Profesor>)servicioProfesor.buscarProfesorCedula(cedula); 
+    }
+    public List<Profesor> buscarProfesorNombre(String nombre) throws GlobalException, NoDataException{
+        servicioProfesor = new ServicioProfesor();
+        return (List<Profesor>)servicioProfesor.buscarProfesorNombre(nombre); 
+    }
+    ////////////////////////////////////GRUPOS/////////////////////////////////
+    public void ingresarGrupo(Grupo grupo) throws GlobalException, SQLException, NoDataException{
+        servicioGrupo = new ServicioGrupo();
+        servicioGrupo.insertarGrupo(grupo);
+    }
+    public void eliminarGrupo(String codigo) throws GlobalException,SQLException, NoDataException{
+        servicioGrupo = new ServicioGrupo();
+        servicioGrupo.eliminarGrupo(codigo);
+    }
+    
+    public void modificarGrupo(Grupo grupo) throws GlobalException, SQLException, NoDataException{
+        servicioGrupo = new ServicioGrupo();
+        servicioGrupo.modificarGrupo(grupo);
     }
         
-    public List<Cliente> buscarClienteCedula(String cedula) throws GlobalException, NoDataException{
-        return (List<Cliente>)servicioCliente.buscarClienteCedula(cedula);
+    public ArrayList listarGrupos() throws GlobalException, NoDataException{
+        servicioGrupo = new ServicioGrupo();
+        return servicioGrupo.listarGrupos();
     }
     
-    //Agencias
-    public void insertarAgencia(Agencia agencia) throws Exception{
-        servicioAgencia.insertarAgencia(agencia);
+    //////////////////////////////////CARRERAS///////////////////////////////////
+    public void insertarCarrera(Carrera carrera) throws Exception{
+        servicioCarrera = new ServicioCarrera();
+        servicioCarrera.insertarCarrera(carrera);
     }
     
-    public void modificarAgencia(Agencia agencia) throws Exception{
-        servicioAgencia.editarAgencia(agencia);
+    public void modificarCarrera(Carrera carrera) throws Exception{
+        servicioCarrera = new ServicioCarrera();
+        servicioCarrera.modificarCarrera(carrera);
     }
     
-   public void eliminarAgencia(String codigo) throws Exception{
-        servicioAgencia.eliminarAgencia(codigo);
+   public void eliminarCarrera(String codigo) throws Exception{
+       servicioCarrera = new ServicioCarrera();
+        servicioCarrera.eliminarCarrera(codigo);
     }
     
-    public ArrayList<Agencia> listarAgencias() throws GlobalException, NoDataException{
-        return servicioAgencia.listarAgencias();
+    public ArrayList buscarCarreraCodigo(String codigo) throws GlobalException, NoDataException{
+        servicioCarrera = new ServicioCarrera();
+        return  servicioCarrera.buscarCarreraCodigo(codigo); 
+    }
+   
+    public ArrayList buscarCarreraNombre(String nombre) throws GlobalException, NoDataException{
+        servicioCarrera = new ServicioCarrera();
+        return servicioCarrera.buscarCarreraNombre(nombre); 
+    }
+    public Carrera buscarCarreraPorNombre(String nombre) throws GlobalException, NoDataException{
+        servicioCarrera = new ServicioCarrera();
+        return servicioCarrera.buscarCarreraPorNombre(nombre); 
+    }
+    public ArrayList listarCarreras()throws GlobalException, NoDataException{
+        servicioCarrera = new ServicioCarrera();
+        return servicioCarrera.listarCarreras();
+    }
+   
+    public Carrera buscarCarrera(String codigo) throws GlobalException, NoDataException{
+        servicioCarrera = new ServicioCarrera();
+        return servicioCarrera.buscarCarrera(codigo); 
     }
     
-    //Vehiculos
-    public void insertarVehiculo(Vehiculo vehiculo) throws Exception{
-        servicioVehiculo.insertarVehiculo(vehiculo);
+    ///////////////////////////////CICLOS////////////////////////////////////////
+    public void insertarCiclo(Ciclo ciclo) throws Exception{
+        servicioCiclos = new ServicioCiclo();
+        servicioCiclos.insertarCiclo(ciclo);
     }
     
-    public void modificarVehiculo(Vehiculo vehiculo) throws Exception{
-        servicioVehiculo.editarVehiculo(vehiculo);
+    public void modificarCiclo(Ciclo ciclo) throws Exception{
+        servicioCiclos = new ServicioCiclo();
+        servicioCiclos.modificarCiclo(ciclo);
     }
     
-   public void eliminarVehiculo(String codigo) throws Exception{
-        servicioVehiculo.eliminarVehiculo(codigo);
+   public void eliminarCiclo(String codigo) throws Exception{
+       servicioCiclos = new ServicioCiclo();
+        servicioCiclos.eliminarCiclo(codigo);
+    }
+       
+    public Ciclo buscarCiclo(String codigo) throws GlobalException, NoDataException{
+        servicioCiclos = new ServicioCiclo();
+        return servicioCiclos.buscarCiclo(codigo); 
     }
     
-    public ArrayList<Vehiculo> listarVehiculos() throws GlobalException, NoDataException{
-        return servicioVehiculo.listarVehiculos();
+   public ArrayList listarCiclos()throws GlobalException, NoDataException{
+       servicioCiclos = new ServicioCiclo();
+        return servicioCiclos.listarCiclos();
     }
     
-    public ArrayList<Clasificacion> listarClasificaciones() throws GlobalException, NoDataException{
-        return servicioVehiculo.listarClasificaciones();
+    public ArrayList buscarCicloCodigo(String codigo) throws GlobalException, NoDataException{
+        servicioCiclos = new ServicioCiclo();
+        return servicioCiclos.buscarCodigoCiclo(codigo); 
+    }
+   
+    public ArrayList buscarCicloAno(String ano) throws GlobalException, NoDataException{
+        servicioCiclos = new ServicioCiclo();
+        return servicioCiclos.buscarCicloAno(ano); 
     }
     
-    public ArrayList<Marca> listarMarcas() throws GlobalException, NoDataException{
-        return servicioVehiculo.listarMarcas();
+///////////////////////////////CURSOS////////////////////////////////////////
+     
+    public void insertarCurso(Curso curso) throws Exception{
+        servicioCursos = new ServicioCursos();
+        servicioCursos.insertarCurso(curso);
     }
     
-    public ArrayList<Transmision> listarTrasmisiones() throws GlobalException, NoDataException{
-        return servicioVehiculo.listarTransmisiones();
+    public void modificarCurso(Curso curso) throws Exception{
+        servicioCursos = new ServicioCursos();
+        servicioCursos.modificarCurso(curso);
     }
+    
+   public void eliminarCurso(String codigo) throws Exception{
+       servicioCursos = new ServicioCursos();
+        servicioCursos.eliminarCurso(codigo);
+    }
+           
+    public ArrayList listarCursos() throws GlobalException, NoDataException{
+        servicioCursos = new ServicioCursos();
+        return servicioCursos.listarCursos();
+    }
+      
+    public ArrayList buscarCursoCodigo(String codigo) throws GlobalException, NoDataException{
+        servicioCursos = new ServicioCursos();
+        return servicioCursos.buscarCursoCodigo(codigo); 
+    }
+    
+    public ArrayList buscarCursoNombre(String nombre) throws GlobalException, NoDataException{
+        servicioCursos = new ServicioCursos();
+        return servicioCursos.buscarCursoNombre(nombre); 
+    }
+    
+    public ArrayList buscarCursoCarrera(String carrera) throws GlobalException, NoDataException{
+        servicioCursos = new ServicioCursos();
+        return servicioCursos.buscarCursoCarrera(carrera); 
+    }
+    
+    public Curso buscarCurso(String codigo) throws GlobalException, NoDataException{
+        servicioCursos = new ServicioCursos();
+        return servicioCursos.buscarCurso(codigo); 
+    }   
 }

@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/edit_icon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/ic_edit"
+            android:layout_height="@dimen/ic_edit"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
@@ -27,7 +27,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/edit_icon"
-            android:text="Editar"
+            android:text="@string/edit"
             android:textColor="#fff"
             android:textSize="13dp" />
     </RelativeLayout>
@@ -36,7 +36,7 @@
         android:id="@+id/view_background_delete"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#CC0066"
+        android:background="@color/bg_delete"
         android:visibility="gone">
 
         <ImageView
@@ -54,7 +54,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@id/delete_icon"
-            android:text="Eliminar"
+            android:text="@string/delete"
             android:textColor="#fff"
             android:textSize="13dp" />
     </RelativeLayout>

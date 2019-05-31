@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -13,43 +16,88 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
         <activity
-            android:name=".Activities.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".Activities.LoginActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <!-- ########################## Cliente ########################## -->
         <activity
-            android:name=".Activities.AdmClienteActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Clientes">
+            android:name=".Activities.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- ########################## Profesor ########################## -->
+        <activity
+            android:name=".Activities.AdmProfesorActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.AddUpdClienteActivity"
-            android:label="Cliente"/>
+            android:name=".Activities.AddUpdProfesorActivity" />
 
-        <!-- ########################## Agencia ########################## -->
+        <!-- ######################### Carrera ######################### -->
         <activity
-            android:name=".Activities.AdmAgenciaActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Agencias">
+            android:name=".Activities.AdmCarreraActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.AddUpdAgenciaActivity"
-            android:label="Agencia"/>
+            android:name=".Activities.AddUpdCarreraActivity" />
+
+        <!-- ########################## Ciclo ########################## -->
+        <activity
+            android:name=".Activities.AdmCicloActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.AddUpdCicloActivity" />
+
+        <!-- ########################## Curso ########################## -->
+        <activity
+            android:name=".Activities.AdmCursoActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.AddUpdCursoActivity" />
+
+        <!-- ########################## Grupo ########################## -->
+        <activity
+            android:name=".Activities.AdmGrupoActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.AddUpdGrupoActivity" />
+
+
+        <!-- ########################## Alumno ########################## -->
+        <activity
+            android:name=".Activities.AdmAlumnoActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.AddUpdAlumnoActivity" />
+
     </application>
 
 </manifest>
